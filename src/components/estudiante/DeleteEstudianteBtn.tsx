@@ -12,8 +12,10 @@ export default function DeleteEstudianteBtn({ estudianteId }: Props) {
   const router = useRouter();
   const { deleteEstudiante } = useEstudiante();
   const handleDelete = async () => {
-    await deleteEstudiante(estudianteId);
-    router.push("/estudiantes");
+    if (confirm(`¿Desea borrar el estudiante?`)) {
+      await deleteEstudiante(estudianteId);
+      router.push("/estudiantes");
+    }
   };
   return (
     <button onClick={handleDelete} className="text-red-500 font-bold">
