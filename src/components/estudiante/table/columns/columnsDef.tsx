@@ -1,23 +1,24 @@
 import { StatusChip } from "@/components/StatusChip";
 import { createColumnHelper } from "@tanstack/react-table";
-import FechaMatriculaCol from "./FechaMatriculaCol";
-import FechaRetiroCol from "./FechaRetiroCol";
-import { EstudiantesInfoTable } from "../EstudiantesList";
 import NombreCol from "./NombreCol";
 import FechaNacimientoCol from "./FechaNacimientoCol";
 import Header from "./Header";
 import Link from "next/link";
+import { Estudiante } from "@prisma/client";
 
-const columnHelper = createColumnHelper<EstudiantesInfoTable>();
+const columnHelper = createColumnHelper<Estudiante>();
 export const estudiantesColumnsDef = [
   columnHelper.accessor((row) => row.id, {
     id: "id",
     cell: (info) => {
       const isNew =
-        (info.row.original.docente?.trim() === "" || // Esta vacio
-          info.row.original.docente?.toLowerCase().includes("alternativo") || // El docente dice alternativo
-          info.row.original.docente?.toLowerCase().includes("regular")) && // o regular
-        info.row.original.estado; // y se encuentra activo
+        info.row.original.created_at - 0 > Date.now() - 1000 * 60 * 60 * 24 * 7;
+
+      const withoutProf =
+        // The docente is alternativo, regular or is empty
+        ["", "alternativo", "regular"].includes(
+          (info.row.original.docente ?? "").trim().toLowerCase()
+        ) && info.row.original.estado; // y se encuentra activo
       return (
         <div className="flex flex-row items-center space-x-2">
           <Link
@@ -26,12 +27,20 @@ export const estudiantesColumnsDef = [
           >
             #{info.getValue()}
           </Link>
-          {isNew && (
+          {withoutProf && (
             <div
               title="Sin profesor asignado"
               className="flex flex-row items-center px-3 py-1 rounded-full bg-purple-100 text-purple-800 border border-purple-800"
             >
               <p className="text-sm font-medium">Sin Profesor</p>
+            </div>
+          )}
+          {isNew && (
+            <div
+              title="Nuevo"
+              className="flex flex-row items-center px-3 py-1 rounded-full bg-yellow-100 text-yellow-800 border border-yellow-800"
+            >
+              <p className="text-sm font-medium">Nuevo</p>
             </div>
           )}
         </div>
