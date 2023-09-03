@@ -4,10 +4,13 @@ import EstudiantesList, {
   EstudiantesInfoTable,
 } from "@/components/estudiante/table/EstudiantesList";
 import {
+  Button,
   baseClasses,
   primaryClasses,
   secondaryClasses,
 } from "@/components/lib/Button";
+import RefreshArrow from "@/components/icons/RefreshArrow";
+import RefreshButton from "@/components/lib/RefreshButton";
 
 const fetchEstudiantes = async () => {
   const estudiantes = await prismaClient.estudiante.findMany({
@@ -43,6 +46,7 @@ export default async function Estudiantes({ searchParams }: Props) {
           >
             Agregar
           </Link>
+          <RefreshButton />
         </div>
       </div>
       <EstudiantesList searchParams={searchParams} estudiantes={estudiantes} />
@@ -50,4 +54,4 @@ export default async function Estudiantes({ searchParams }: Props) {
   );
 }
 
-export const revalidate = 1;
+export const dynamic = "force-dynamic";
