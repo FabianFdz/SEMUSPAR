@@ -12,7 +12,8 @@ export const estudiantesColumnsDef = [
     id: "id",
     cell: (info) => {
       const isNew =
-        info.row.original.created_at - 0 > Date.now() - 1000 * 60 * 60 * 24 * 7;
+        info.row.original.created_at.valueOf() >
+        Date.now() - 1000 * 60 * 60 * 24 * 7;
 
       const withoutProf =
         // The docente is alternativo, regular or is empty
