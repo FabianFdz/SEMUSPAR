@@ -1,7 +1,6 @@
 import { Estudiante } from "@prisma/client";
 import SingleFilter from "./types/SingleFilter";
 import { CustomFilter, estudiantesFilters } from "./FilterList";
-import { EstudiantesInfoTable } from "./../EstudiantesList";
 import React, {
   ChangeEvent,
   Dispatch,

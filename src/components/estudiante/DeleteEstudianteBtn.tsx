@@ -1,8 +1,8 @@
 "use client";
 
-import { useEstudiante } from "@/hooks/useEstudiante";
-import { useRouter } from "next/navigation";
 import React from "react";
+import { useRouter } from "next/navigation";
+import { useEstudiante } from "@/hooks/useEstudiante";
 
 interface Props {
   estudianteId: number;

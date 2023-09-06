@@ -9,7 +9,17 @@ export default async function Menu() {
 
   return (
     <nav className="flex flex-row justify-start border-b mb-8 space-x-8 py-4 bg-gray-50">
-      <Link className="text-2xl font-bold text-center ml-4" href="/">
+      <Link
+        className="text-2xl font-bold text-center ml-4 flex flex-row"
+        href="/"
+      >
+        <Image
+          alt="Logo"
+          width={45}
+          height={45}
+          className="rounded-full mr-2"
+          src={"/semuspar.svg"}
+        />
         SEMUSPAR
       </Link>
       <div className="flex flex-row justify-between items-center space-x-6 text-gray-500">
@@ -20,10 +30,10 @@ export default async function Menu() {
           Estudiantes
         </Link>
         <Link
-          href="#"
+          href="/encargados"
           className="rounded hover:text-gray-900 transition-all ease-in-out duration-200 font-medium"
         >
-          Control de Préstamo de Instrumentos
+          Encargados
         </Link>
       </div>
       <div className="flex flex-row space-x-5 absolute top-4 right-4">

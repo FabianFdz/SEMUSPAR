@@ -71,6 +71,8 @@ export function parseEstudiantesData(
       trabaja: false,
     };
 
+    const encargados = [];
+
     const encargadoPadre: Omit<
       Encargado,
       "id" | "created_at" | "updated_at" | "estudiante_id"
@@ -82,6 +84,10 @@ export function parseEstudiantesData(
       parentezco: "PADRE",
       telefono: row["4.2 Teléfono del Padre o Encargado"]?.trim(),
     };
+
+    if (encargadoPadre.nombre_completo.trim() !== "") {
+      encargados.push(encargadoPadre);
+    }
 
     const encargadoMadre: Omit<
       Encargado,
@@ -97,6 +103,10 @@ export function parseEstudiantesData(
       telefono: row["4.7 Teléfono de la Madre o Encargada"]?.trim(),
     };
 
+    if (encargadoMadre.nombre_completo.trim() !== "") {
+      encargados.push(encargadoMadre);
+    }
+
     const facturacion: Omit<Facturacion, "id" | "created_at" | "updated_at"> = {
       cedula: row["5.2 Número de Identificación"]?.trim(),
       email: row["5.3 Correo electrónico"]?.trim(),
@@ -110,7 +120,7 @@ export function parseEstudiantesData(
     estudiantes.push({
       estudiante: { ...newEstudiante },
       facturacion: { ...facturacion },
-      encargados: [encargadoMadre, encargadoPadre],
+      encargados,
     });
   }
 

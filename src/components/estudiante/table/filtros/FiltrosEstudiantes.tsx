@@ -18,7 +18,7 @@ interface Props {
   setFilteredEstudiantes: Dispatch<SetStateAction<Estudiante[]>>;
 }
 
-export default function Filtros({
+export default function FiltrosEstudiantes({
   data,
   searchParams,
   filteredEstudiantes,

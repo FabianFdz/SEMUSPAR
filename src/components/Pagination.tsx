@@ -62,7 +62,7 @@ export default function Pagination({ table }: PaginationProps) {
         </span>
       </div>
       <span className="mt-4">
-        Total: <strong>{table.getCoreRowModel().rows.length}</strong> estudiante
+        Total: <strong>{table.getCoreRowModel().rows.length}</strong> persona
         {table.getCoreRowModel().rows.length === 1 ? "" : "s"}
       </span>
     </div>

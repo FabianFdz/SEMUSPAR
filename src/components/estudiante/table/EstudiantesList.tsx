@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Table from "@/components/Table";
-import Filtros from "./filtros/Filtros";
+import Filtros from "./filtros/FiltrosEstudiantes";
 import { Estudiante } from "@prisma/client";
 import { estudiantesColumnsDef } from "./columns/columnsDef";
 
